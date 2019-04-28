@@ -26,10 +26,10 @@ def find_number_with_longest_calls_time(list):
     phone_number = None
 
     for sending_number, receiving_number, _, duration in list:
-        if sending_number not in numbers:
+        if numbers.get(sending_number) == None:
             numbers[sending_number] = 0
 
-        if receiving_number not in numbers:
+        if numbers.get(receiving_number) == None:
             numbers[receiving_number] = 0
 
         numbers[sending_number] += int(duration)
