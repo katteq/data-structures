@@ -35,10 +35,10 @@ def find_markering_phones(calls, texts):
 
     for sender_phone, receiver_phone, _, _ in calls:
         receivers[receiver_phone] = receiver_phone
-        if receiver_phone in telemarketers:
+        if telemarketers.get(receiver_phone) != None:
             del telemarketers[receiver_phone]
-        if sender_phone in receivers:
-            if  sender_phone in telemarketers:
+        if receivers.get(sender_phone) != None:
+            if  telemarketers.get(sender_phone) != None:
                 del telemarketers[sender_phone]
         else:
             telemarketers[sender_phone] = sender_phone
