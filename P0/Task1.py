@@ -27,9 +27,9 @@ numbers_dictionary={}
 
 def count_phone_numbers(list, numbers):
     for sending_number, receiving_number, *other in list:
-        if sending_number not in numbers:
+        if numbers.get(sending_number) == None:
             numbers[sending_number] = sending_number
-        if receiving_number not in numbers:
+        if numbers.get(receiving_number) == None:
             numbers[receiving_number] = receiving_number
 
     return len(numbers)
