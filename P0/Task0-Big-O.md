@@ -1,0 +1,1 @@
+There are 4 lines of the code in total, which is O(4), after applying the approximation it would be O(1), which means no matter how many data in the files, this would take same amount of time to run this program.
