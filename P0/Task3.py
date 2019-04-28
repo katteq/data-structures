@@ -5,11 +5,11 @@ It's ok if you don't understand how to read files.
 import csv
 import re
 
-with open('texts.csv', 'r') as f:
+with open("texts.csv", "r") as f:
     reader = csv.reader(f)
     texts = list(reader)
 
-with open('calls.csv', 'r') as f:
+with open("calls.csv", "r") as f:
     reader = csv.reader(f)
     calls = list(reader)
 
@@ -45,44 +45,52 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 
+
 def get_phone_area_code(phone_number):
-  if phone_number.startswith("140"):
-    return 140
+    if phone_number[0:3] == "140":
+        return 140
 
-  match_fixed = re.search('^\\((\d+)\\)+', phone_number)
-  if match_fixed and match_fixed.group(1):
-    return match_fixed.group(1)
+    first_char = phone_number[0]
+    if first_char == "(":
+        return phone_number[1:4]
 
-  match_mobile = re.search('^([7|8|9]\d{3})', phone_number)
-  if match_mobile and match_mobile.group(0):
-    return match_mobile.group(0)
+    if (
+        first_char == "7"
+        or first_char == "8"
+        or first_char == "9"
+    ):
+        return phone_number[0:4]
 
-  return None
+    return None
+
 
 def find_recepients_area_codes(list):
-  recepients_codes = {}
-  total = 0
+    recepients_codes = {}
+    total = 0
 
-  for sending_number, receiving_number, _, _ in list:
-    sending_number_code = get_phone_area_code(sending_number)
-    if sending_number_code != None and sending_number_code == "080":
-      receiving_number_code = get_phone_area_code(receiving_number)
-      if receiving_number_code != None:
-        if receiving_number_code not in recepients_codes:
-          recepients_codes[receiving_number_code] = 0
-        recepients_codes[receiving_number_code] += 1
-        total += 1
+    for sending_number, receiving_number, _, _ in list:
+        sending_number_code = get_phone_area_code(sending_number)
+        if sending_number_code != None and sending_number_code == "080":
+            receiving_number_code = get_phone_area_code(receiving_number)
+            if receiving_number_code != None:
+                if recepients_codes.get(receiving_number_code) == None:
+                    recepients_codes[receiving_number_code] = 0
+                recepients_codes[receiving_number_code] += 1
+                total += 1
 
-  return (recepients_codes, total)
+    return (recepients_codes, total)
+
 
 recepients_area_codes, calls_total_number = find_recepients_area_codes(calls)
 
 recepients_area_codes_list = list(recepients_area_codes)
-recepients_area_codes_list.sort()
 
 print("The numbers called by people in Bangalore have codes:")
-print(*recepients_area_codes_list, sep = "\n")
+print(*sorted(recepients_area_codes_list), sep="\n")
 
-bangalore_calls = int(recepients_area_codes['080'])/int(calls_total_number) * 100
+bangalore_calls = int(recepients_area_codes["080"]) / int(calls_total_number) * 100
 
-print("%.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore." % bangalore_calls)
+print(
+    "%.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore."
+    % bangalore_calls
+)
