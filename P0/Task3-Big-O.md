@@ -4,12 +4,12 @@ Also, find_recepients_area_codes performs the phone number dictionary lookup ope
 
 O(find_recepients_area_codes) = O(n * (2 * O(get_phone_area_code) + 1))
 
-The get_phone_area_code function performs about 10 instructions, among them, are 3 slice operation and 1 retrieval the char of a string by index. The slice operation has O(k) complexity https://stackoverflow.com/questions/35180377/time-complexity-of-string-slice, where k is the length of the slice, in our case the maximum slice length is 4, and the string characters access by index takes constant time. Although the slice depends on the slice length, it doesn't change only between 3 and 4, for all the possible phone numbers.  So the order the function should be constant:
+The get_phone_area_code function performs about 10 instructions, among them, are 2 slice operation, 1 string search and 1 retrieval the char of a string by index. The slice operation has O(k) complexity https://stackoverflow.com/questions/35180377/time-complexity-of-string-slice, where k is the length of the slice, in our case the maximum slice length is 5, and the string characters access by index takes constant time. Although the slice depends on the slice length, it doesn't change only between 3 and 5, for all the possible phone numbers. In addition, the setring char search has a linear complexity O(n) So the order the function should be linear:
 
-O(get_phone_area_code) = O(1)
+O(get_phone_area_code) = O(n)
 
 So the complexity of the find_recepients_area_codes:
-O(find_recepients_area_codes) = O(n * (2 * O(1) + 1)) ~ O(n)
+O(find_recepients_area_codes) = O(n * (2 * O(n) + 1)) ~ O(n^2)
 
 Also, there is an additional code which runs sorting of the phone numbers list, prints statements and calculates the percent of calls from fixed lines in Bangalore.
 
@@ -18,4 +18,4 @@ So there will be an addition to the mentioned run-time:
 - the runtime of the sort function is O(n log n), according to the python documentation https://wiki.python.org/moin/TimeComplexity it's on average and worth case scenario
 - prints and percent calculation  O(1)
 
-The resulting runtime of the script is O(n + n log n + 1), or after the approximation O(n + n log n), and we could even neglect then addition part saying that the order would be O(n log n).
+The resulting runtime of the script is O(n + n log n + n^2), or after the approximation O(n log n + n^2).

@@ -22,7 +22,6 @@ Print a message:
 
 # We have to count all numbers so the dictionary is initialized outside the function
 
-
 numbers_dictionary={}
 
 def count_phone_numbers(list, numbers):
@@ -32,7 +31,7 @@ def count_phone_numbers(list, numbers):
         if numbers.get(receiving_number) == None:
             numbers[receiving_number] = receiving_number
 
-    return len(numbers)
+count_phone_numbers(texts, numbers_dictionary)
+count_phone_numbers(calls, numbers_dictionary)
 
-print("There are %s different telephone numbers in the records." %
-    (count_phone_numbers(texts, numbers_dictionary) + count_phone_numbers(calls, numbers_dictionary)))
+print("There are %s different telephone numbers in the records." % len(numbers_dictionary))

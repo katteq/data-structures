@@ -8,4 +8,4 @@ O(find_markering_phones) = O(9072 + 5213 + O(1)) ~ O(n).
 
 Also, since the requirement of the task is to print the records in lexicographical order, the function performs the list sort which complexity is O(n log n). And print statements run time is O(1)
 
-The resulting runtime is O(n + n log n + 1), or after the approximation O(n + n log n).
+The resulting runtime is O(n + n log n + 1), or after the approximation O(n log n).

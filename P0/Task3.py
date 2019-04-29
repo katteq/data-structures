@@ -52,7 +52,7 @@ def get_phone_area_code(phone_number):
 
     first_char = phone_number[0]
     if first_char == "(":
-        return phone_number[1:4]
+        return phone_number[1:phone_number.find(")")]
 
     if (
         first_char == "7"
