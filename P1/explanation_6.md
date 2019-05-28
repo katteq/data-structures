@@ -1,0 +1,1 @@
+The python set data structure has been used here to build the `union` and `intersection` functions. Set has a constant lookup time. Therefore, the complexity of both tasks which have to iterate over two linked lists one by one is O(n + m), where `n` is the length of the first list, and, `m`  length of the second list, simplified O(n).

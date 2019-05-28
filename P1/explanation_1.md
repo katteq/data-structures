@@ -1,0 +1,3 @@
+LRU cache has been implemented using a linked list data structure which keeps track of both head and tail nodes to enqueue and dequeue nodes efficiently. Since linked list doesn't provide insert operation, it's nodes is naturally ordered from the eldest to the most recently added values. Therefore, if cache size reaches the limit, it dequeues the nodes from the beginning of the linked list. Adding and removing data from the linked list has a constant time `O(1)`.
+
+LRU cache supports `get` and `set` operations. The python set data structure is used to preserve the key-value pairs and have a constant lookup time.
