@@ -12,7 +12,7 @@ class Block:
     def calc_hash(self, previous_hash):
         data_hash = hashlib.sha256()
         data_hash.update((str(self.data) +
-                         str(self.timestamp) + str(previous_hash)).encode('utf-8'))
+                          str(self.timestamp) + str(previous_hash)).encode('utf-8'))
         return data_hash.hexdigest()
 
     def get_hash(self):
@@ -58,11 +58,24 @@ for block in l:
     print(block.hash, block.previous_hash)
 
 
-def test1():
-    print("Fail" if Block("1").get_hash() == Block("1").get_hash() else "Pass")
-    print("Fail" if Block("12").get_hash() == Block("12").get_hash() else "Pass")
+def test_add_new_block(l):
+    blockchain = Blockchain()
+    for e in l:
+        blockchain.new_block(e)
 
-def test2():
+    if blockchain.size != len(l)+1:
+        print("Fail")
+        return
+
+    res = True
+    for i in range(1, len(l) + 1):
+        if l[i-1].encode("utf-8") != blockchain.chain[i].data:
+            res = False
+            break
+    print("Pass" if res else "Fail")
+
+
+def test_blockchain_hash():
     blockchain = Blockchain()
     blockchain.new_block("1")
     blockchain.new_block("2")
@@ -78,5 +91,6 @@ def test2():
     print("Fail" if verify_last == blockchain.get_last_block().hash else "Pass")
 
 
-test1()
-test2()
+test_add_new_block(["1", "2", "3", "4", "5", "6", "6", "7"])
+test_add_new_block([])
+test_blockchain_hash()
