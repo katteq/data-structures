@@ -1,0 +1,3 @@
+In this problem, I have used the binary search algorithm to identify the square root of the given input. The search is performed on the range of the numbers between `0` and the function's input `number`. During the first step, the range divided into two parts and the median value is squared to check whether the possible square root is above or below the median squared value. If below - the search continues in the left part of the range, otherwise in the right part of the range until the square root is matched, or if not matched but is in between two integer values.
+
+Therefore the complexity of the problem is O(log(n)).

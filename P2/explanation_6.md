@@ -1,0 +1,3 @@
+The algorithm implemented using linear search which has a linear complexity O(n). The function loops through the input range of integers looking for the `min` and `max` values assuming the initial values of the min and max are `None`. So on the first step, both min and max would get similar value equal to the first value of the input lint(range of the elements). On the next step, the function would compare the next array element with `max` and `min` values to decide whether `min` is larger than the next value, or whether the `max` is smaller than the next value, and reassigning `min/max` to the next value if the condition is True.
+
+By the end of the loop, both min and max would be equal to max and min array values.
